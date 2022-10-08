@@ -12,13 +12,15 @@ function photographerFactory(data) {
 
     function getUserCardDOM() {
         const link = document.createElement( 'a' );
-        link.setAttribute("href", "/");
+        link.setAttribute("href", "/photographer.html?id=" + id);
         link.setAttribute("aria-label", name);
+        link.setAttribute("tabindex", "+0");
+        link.setAttribute("data-message", "this is form card photographer")
         const article = document.createElement( 'article' );
         const article2 = document.createElement( 'article' );
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
-        img.setAttribute("alt", name)
+        img.setAttribute("alt", "")
         const h2 = document.createElement( 'h2' );
         h2.textContent = name;
         const h3 = document.createElement( 'h3' );
