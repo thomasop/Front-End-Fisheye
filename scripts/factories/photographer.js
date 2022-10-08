@@ -1,5 +1,5 @@
 function photographerFactory(data) {
-    const { name, portrait } = data;
+    const { id, name, city, country, tagline, price, portrait } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
