@@ -1,11 +1,14 @@
 function factory(data, type) {
     if (type == 'photographers') {
+        return photographersFactory(data);
+    } else if (type == 'photographer') {
         return photographerFactory(data);
     } else {
+        return mediaFactory(data);
     }
 }
 
-function photographerFactory(data) {
+function photographersFactory(data) {
     const { id, name, city, country, tagline, price, portrait } = data;
 
     const picture = `assets/photographers/${portrait}`;
@@ -40,4 +43,135 @@ function photographerFactory(data) {
         return (article2);
     }
     return { name, picture, getUserCardDOM }
+}
+
+function photographerFactory(data) {
+    const { id, name, portrait, city, country, tagline, price } = data;
+
+    const picture = `assets/photographers/${portrait}`;
+
+    function getUserCardDOM() {
+        const photographersSection = document.querySelector(".photograph-header");
+        const article = document.createElement( 'article' );
+        article.setAttribute("class", "photograph-header__article");
+        const h1 = document.createElement( 'h1' );
+        h1.textContent = name;
+        h1.setAttribute("class", "photograph-header__h1");
+        const h2 = document.createElement( 'h2' );
+        h2.textContent = city + ", " + country;
+        h2.setAttribute("class", "photograph-header__h2");
+        const p = document.createElement( 'p' );
+        p.textContent = tagline;
+        p.setAttribute("class", "photograph-header__p");
+        article.appendChild(h1);
+        article.appendChild(h2);
+        article.appendChild(p);
+        photographersSection.appendChild(article);
+
+        const contact = document.createElement( 'button' );
+        contact.setAttribute("class", "contact_button");
+        contact.setAttribute("onclick", "displayModal()");
+        contact.textContent = "Contactez-moi";
+        photographersSection.appendChild(contact)
+
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        img.setAttribute("class", "photograph-header__img");
+        img.setAttribute("alt", name);
+        photographersSection.appendChild(img)
+
+        const priceD = document.createElement( 'div' );
+        const like = document.createElement( 'div' );
+        const span = document.createElement( 'span' );
+        span.setAttribute("id", "photograph__span")
+        span.textContent = "297 081";
+        const imgLike = document.createElement( 'img' );
+        imgLike.setAttribute("id", "photograph__like");
+        imgLike.setAttribute("src", "assets/icons/Vector.png");
+        imgLike.setAttribute("alt", "like icone")
+        like.appendChild(span);
+        like.appendChild(imgLike);
+        const priceDay = document.createElement( 'h2' );
+        priceDay.textContent = price + "€/jour"
+        priceDay.setAttribute("class", "photograph__priceDay");
+        priceD.setAttribute("class", "photograph__price");
+        priceD.appendChild(like);
+        priceD.appendChild(priceDay);
+        photographersSection.appendChild(priceD);
+
+        
+        return (photographersSection);
+    }
+    return { name, getUserCardDOM }
+}
+
+function mediaFactory(data) {
+    if (data.image) {
+        const picture = `assets/media/${data.image}`;
+        function getUserCardDOM() {
+            const mediaSection = document.querySelector(".galerie");
+            const img = document.createElement( 'img' );
+            img.setAttribute("src", picture);
+            img.setAttribute("alt", "media of photographer : " + data.title);
+            const div = document.createElement( 'div' );
+            const divFlex = document.createElement( 'div' );
+            divFlex.setAttribute("class", "galerie__div--flex")
+            const p = document.createElement( 'h2' );
+            p.textContent = data.title;
+            p.setAttribute("class", "galerie__p");
+            const span = document.createElement( 'span' );
+            span.textContent = data.likes;
+            span.setAttribute("class", "galerie__span");
+            divFlex.appendChild(p);
+            divFlex.appendChild(span);
+            const i = document.createElement( 'img' );
+            i.setAttribute("src", "assets/icons/Vector.png");
+            i.setAttribute("alt", "like icone")
+            i.setAttribute("class", "galerie__icone");
+            span.appendChild(i);
+
+            div.appendChild(img);
+            div.appendChild(divFlex);
+            mediaSection.appendChild(div);
+        }
+    } else {
+        const videoData = `assets/media/${data.video}`;
+        function getUserCardDOM() {
+            const mediaSection = document.querySelector(".galerie");
+            const video = document.createElement( 'video' );
+            video.setAttribute("controls", "");
+            video.setAttribute("playinline", "");
+            const source = document.createElement( 'source' );
+            source.setAttribute("src", videoData);
+            source.setAttribute("type", "video/mp4");
+            const track = document.createElement( 'track' );
+            track.setAttribute("label", "English");
+            track.setAttribute("srclang", "en");
+            video.appendChild(source);
+            video.appendChild(track);
+            const div = document.createElement( 'div' );
+            const divFlex = document.createElement( 'div' );
+            divFlex.setAttribute("class", "galerie__div--flex")
+            const p = document.createElement( 'h2' );
+            p.textContent = data.title;
+            p.setAttribute("class", "galerie__p");
+            const span = document.createElement( 'span' );
+            span.textContent = data.likes;
+            span.setAttribute("class", "galerie__span");
+            const i = document.createElement( 'img' );
+            i.setAttribute("src", "assets/icons/Vector.png");
+            i.setAttribute("class", "galerie__icone");
+            i.setAttribute("alt", "like icone")
+            span.appendChild(i);
+
+            divFlex.appendChild(p);
+            divFlex.appendChild(span);
+
+            div.appendChild(video);
+            div.appendChild(divFlex);
+            mediaSection.appendChild(div);
+        }
+    }
+    
+    return { getUserCardDOM }
 }

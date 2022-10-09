@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
   <head>
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
@@ -9,29 +9,39 @@
   </head>
   <body>
     <header>
-      <img src="assets/images/logo.png" class="logo" />
+      <a href="/index.html" tabindex="0" alt="Fisheye Home page"><img src="assets/images/logo.png" alt="logo web site"></a>
     </header>
     <main id="main">
       <div class="photograph-header">
-        <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
       </div>
+      <div class="media-sort">
+          <label for="media-sort">Trier par</label>
+          <select class="media-sort__select" name="media-sort" id="media-sort" autocomplete="off">
+            <option class="media-sort__option" selected value="Popularité">Popularité</option>
+            <option class="media-sort__option" value="Date">Date</option>
+            <option class="media-sort__option" value="Titre">Titre</option>
+          </select>
+        
+      </div>
+      <div class="galerie"></div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" onclick="closeModal()" />
+          <img src="assets/icons/close.svg" alt="close icon" onclick="closeModal()" aria-labelledby="close-form-modal" />
         </header>
 				<form>
 					<div>
-						<label>Prénom</label>
-						<input />
+						<label for="Prénom">Prénom</label>
+						<input type="text" name="Prénom" id="Prénom">
 					</div>
           <button class="contact_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
     <script src="/scripts/pages/photographer.js"></script>
+    <script src="./scripts/factories/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
   </body>
 </html>
