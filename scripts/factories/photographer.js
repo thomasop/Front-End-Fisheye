@@ -99,7 +99,8 @@ function photographerFactory(data) {
         priceD.appendChild(priceDay);
         photographersSection.appendChild(priceD);
 
-        
+        const form = document.forms[0];
+        form.insertAdjacentHTML('afterbegin', '<h3>' + name + '</h3>')
         return (photographersSection);
     }
     return { name, getUserCardDOM }

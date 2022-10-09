@@ -29,14 +29,24 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" alt="close icon" onclick="closeModal()" aria-labelledby="close-form-modal" />
+          <img src="assets/icons/close.svg" tabindex="0" class="modal-close" alt="close icon" onclick="closeModal()" aria-labelledby="close-form-modal" />
         </header>
 				<form>
 					<div>
-						<label for="Prénom">Prénom</label>
-						<input type="text" name="Prénom" id="Prénom">
+						<label for="fistName">Prénom</label>
+						<input type="text" name="fistName" id="fistName" tabindex="0">
+            <div class="errorform"></div>
+            <label for="lastName">Nom</label>
+						<input type="text" name="lastName" id="lastName" tabindex="0">
+            <div class="errorform"></div>
+            <label for="mail">Email</label>
+						<input type="email" name="mail" id="mail" tabindex="0">
+            <div class="errorform"></div>
+            <label for="message">Votre message</label>
+            <textarea name="message" id="message" tabindex="0"></textarea>
+            <div class="errorform"></div>
 					</div>
-          <button class="contact_button">Envoyer</button>
+          <button class="send_button">Envoyer</button>
 				</form>
 			</div>
 		</div>
