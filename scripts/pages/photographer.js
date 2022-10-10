@@ -48,6 +48,7 @@ async function init() {
     displayMedia(media);
 
     open();
+    like();
 };
 
 init();

@@ -127,7 +127,6 @@ header img {
     line-height: 23.44px;
     color: white;
 }
-}
 
 .media-sort__option {
     font-weight: 700;
@@ -188,6 +187,12 @@ header img {
     color: #901C1C;
     vertical-align: middle !important;
     margin-left: 6.38px;
+}
+
+.like {
+    padding: 0;
+    border: none;
+    background: none;
 }
 
 #contact_modal {

@@ -111,10 +111,6 @@ function mediaFactory(data) {
         const picture = `assets/media/${data.image}`;
         function getUserCardDOM() {
             const mediaSection = document.querySelector(".galerie");
-
-            //const link = document.createElement( 'a' );
-            //link.setAttribute("src", "")
-            //link.setAttribute("onclick", "open()")
             const img = document.createElement( 'img' );
             img.setAttribute("src", picture);
             img.setAttribute("class", "galerie__img");
@@ -131,11 +127,14 @@ function mediaFactory(data) {
             span.setAttribute("class", "galerie__span");
             divFlex.appendChild(p);
             divFlex.appendChild(span);
+            const button = document.createElement('button');
+            button.setAttribute("class", "like");
             const i = document.createElement( 'img' );
             i.setAttribute("src", "assets/icons/Vector.png");
             i.setAttribute("alt", "like icone")
             i.setAttribute("class", "galerie__icone");
-            span.appendChild(i);
+            button.appendChild(i)
+            span.appendChild(button);
 
             div.appendChild(img);
             div.appendChild(divFlex);
@@ -164,11 +163,14 @@ function mediaFactory(data) {
             const span = document.createElement( 'span' );
             span.textContent = data.likes;
             span.setAttribute("class", "galerie__span");
+            const button = document.createElement('button');
+            button.setAttribute("class", "like");
             const i = document.createElement( 'img' );
             i.setAttribute("src", "assets/icons/Vector.png");
             i.setAttribute("class", "galerie__icone");
             i.setAttribute("alt", "like icone")
-            span.appendChild(i);
+            button.appendChild(i);
+            span.appendChild(button);
 
             divFlex.appendChild(p);
             divFlex.appendChild(span);
