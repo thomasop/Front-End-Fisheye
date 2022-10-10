@@ -39,7 +39,6 @@ async function displayMedia(name) {
         const userCardDOM = photographerModel.getUserCardDOM();
         //photographersSection.appendChild(userCardDOM);
     });
-    
 }
 
 async function init() {
@@ -47,6 +46,8 @@ async function init() {
     const { photographers, media } = await getPhotographers();
     displayData(photographers);
     displayMedia(media);
+
+    open();
 };
 
 init();

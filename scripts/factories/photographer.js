@@ -111,9 +111,15 @@ function mediaFactory(data) {
         const picture = `assets/media/${data.image}`;
         function getUserCardDOM() {
             const mediaSection = document.querySelector(".galerie");
+
+            //const link = document.createElement( 'a' );
+            //link.setAttribute("src", "")
+            //link.setAttribute("onclick", "open()")
             const img = document.createElement( 'img' );
             img.setAttribute("src", picture);
-            img.setAttribute("alt", "media of photographer : " + data.title);
+            img.setAttribute("class", "galerie__img");
+            img.setAttribute("alt", data.title);
+            //link.appendChild(img);
             const div = document.createElement( 'div' );
             const divFlex = document.createElement( 'div' );
             divFlex.setAttribute("class", "galerie__div--flex")
@@ -140,8 +146,7 @@ function mediaFactory(data) {
         function getUserCardDOM() {
             const mediaSection = document.querySelector(".galerie");
             const video = document.createElement( 'video' );
-            video.setAttribute("controls", "");
-            video.setAttribute("playinline", "");
+            video.setAttribute("class", "galerie__video");
             const source = document.createElement( 'source' );
             source.setAttribute("src", videoData);
             source.setAttribute("type", "video/mp4");

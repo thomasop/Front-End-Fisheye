@@ -24,6 +24,15 @@
         
       </div>
       <div class="galerie"></div>
+      <div id="lightbox">
+        <div id="lightbox-modal">
+          <div>
+            <img src="assets/icons/VectorClose.png" class="lightbox-close" alt="close icon" onclick="closeLightbox()" />
+            <img src="assets/icons/VectorLeft.png" class="lightbox-left" alt="left icon" onclick="beforeLightbox()" />
+            <img src="assets/icons/VectorRight.png" class="lightbox-right" alt="right icon" onclick="nextLightbox()" />
+          </div>
+        </div>
+      </div>
     </main>
     <div id="contact_modal">
 			<div class="modal">
@@ -53,5 +62,6 @@
     <script src="/scripts/pages/photographer.js"></script>
     <script src="./scripts/factories/photographer.js"></script>
     <script src="/scripts/utils/contactForm.js"></script>
+    <script src="/scripts/utils/lightbox.js"></script>
   </body>
 </html>
