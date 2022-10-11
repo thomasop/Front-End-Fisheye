@@ -1,51 +1,53 @@
 //Mettre le code JavaScript lié à la page photographer.html
-async function getPhotographers() {
+async function getPhotographers(id) {
     // Penser à remplacer par les données récupérées dans le json
     try{
         const response = await fetch('./data/photographers.json')
         const data = await response.json()
+        const photographer = data.photographers.filter(function (dataPhotographer) {
+            return dataPhotographer.id === parseInt(id);
+        });
+        const medias = data.media.filter(function (dataMedias) {
+            return dataMedias.photographerId === parseInt(id);
+        });
         return ({
-            photographers: [...data.photographers],
-            media: [...data.media]
+            photographer: [...photographer],
+            medias: [...medias]
         })
     }catch{
         console.log('error')
     }
 }
 
-async function displayData(photographers) {
-    let str = new URLSearchParams(window.location.search);
-    let id = str.get("id");
-    const photographersSection = document.querySelector(".photograph-header");
-    for (i = 0; i < photographers.length; i++) {
-        if (parseInt(photographers[i].id) == parseInt(id)) {
-            const photographerModel = factory(photographers[i], 'photographer');
-            const userCardDOM = photographerModel.getUserCardDOM();
-            //photographersSection.appendChild(userCardDOM);
-        }
-    }
+async function displayData(photographer) {
+    photographer.forEach(element => {
+        const photographerModel = factory(element, 'photographer');
+        const userCardDOM = photographerModel.getUserCardDOM();
+    });
 };
 
-async function displayMedia(name) {
-    let str = new URLSearchParams(window.location.search);
-    let id = str.get("id");
-    const mediaSection = document.querySelector(".galerie");
-    let arr = name;
-    const mediaSelected = name.filter(function (media) {
-        return media.photographerId === parseInt(id);
-    });
+async function displayMedia(mediaSelected) {
     mediaSelected.forEach(element => {
         const photographerModel = factory(element, 'media');
         const userCardDOM = photographerModel.getUserCardDOM();
-        //photographersSection.appendChild(userCardDOM);
     });
+}
+
+async function displaySort(medias) {
+    displayMedia(medias);
+    var mediaSort = document.getElementById("media-sort");
+    mediaSort.addEventListener('input', function(event) {
+        sortBy(arr)
+    })
 }
 
 async function init() {
     // Récupère les datas des photographes
-    const { photographers, media } = await getPhotographers();
-    displayData(photographers);
-    displayMedia(media);
+    let str = new URLSearchParams(window.location.search);
+    let id = str.get("id");
+    const { photographer, medias } = await getPhotographers(id);
+    displayData(photographer);
+    displaySort(medias);
 
     open();
     like();

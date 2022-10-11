@@ -109,6 +109,7 @@ function photographerFactory(data) {
 function mediaFactory(data) {
     if (data.image) {
         const picture = `assets/media/${data.image}`;
+        
         function getUserCardDOM() {
             const mediaSection = document.querySelector(".galerie");
             const img = document.createElement( 'img' );
