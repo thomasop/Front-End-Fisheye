@@ -147,14 +147,11 @@ function mediaFactory(data) {
             const mediaSection = document.querySelector(".galerie");
             const video = document.createElement( 'video' );
             video.setAttribute("class", "galerie__video");
+            video.setAttribute("controls", true);
             const source = document.createElement( 'source' );
             source.setAttribute("src", videoData);
             source.setAttribute("type", "video/mp4");
-            const track = document.createElement( 'track' );
-            track.setAttribute("label", "English");
-            track.setAttribute("srclang", "en");
             video.appendChild(source);
-            video.appendChild(track);
             const div = document.createElement( 'div' );
             const divFlex = document.createElement( 'div' );
             divFlex.setAttribute("class", "galerie__div--flex")

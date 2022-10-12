@@ -35,9 +35,11 @@ async function displayMedia(mediaSelected) {
 
 async function displaySort(medias) {
     displayMedia(medias);
+    open();
+    like(medias);
     var mediaSort = document.getElementById("media-sort");
     mediaSort.addEventListener('input', function(event) {
-        sortBy(arr)
+        sortBy(medias)
     })
 }
 
@@ -48,9 +50,6 @@ async function init() {
     const { photographer, medias } = await getPhotographers(id);
     displayData(photographer);
     displaySort(medias);
-
-    open();
-    like();
 };
 
 init();

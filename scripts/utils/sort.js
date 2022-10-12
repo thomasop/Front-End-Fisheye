@@ -17,6 +17,8 @@ function sortByPopularity(array) {
         return parseFloat(b.likes) - parseFloat(a.likes);
     });
     displayMedia(newArray);
+    open();
+    like(newArray);
 }
 
 function sortByDate(array) {
@@ -24,6 +26,8 @@ function sortByDate(array) {
         return new Date(b.date) - new Date(a.date);
     });
     displayMedia(newArray);
+    open();
+    like(newArray);
 }
 
 function sortByTitre(array) {
@@ -31,6 +35,8 @@ function sortByTitre(array) {
         return a.title !== b.title ? a.title < b.title ? -1 : 1 : 0;
     });
     displayMedia(newArray);
+    open();
+    like(newArray);
 }
 
 function deleteMedia() {
