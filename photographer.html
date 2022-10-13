@@ -15,12 +15,17 @@
       <div class="photograph-header">
       </div>
       <div class="media-sort">
-          <label for="media-sort">Trier par</label>
-          <select class="media-sort__select" name="media-sort" id="media-sort" autocomplete="off">
-            <option class="media-sort__option" value="Popularité">Popularité</option>
-            <option class="media-sort__option" value="Date">Date</option>
-            <option class="media-sort__option" value="Titre">Titre</option>
-          </select>
+          <p>Trier par</p>
+          <div>
+            <button type="button" class="media-sort__select media-sort__active">Popularité</button>
+            <div class="media-sort__div">
+              <button type="button" class="media-sort__select media-sort__hidden">Popularité</button>
+              <button type="button" class="media-sort__select media-sort__hidden">Date</button>
+              <button type="button" class="media-sort__select media-sort__hidden">Titre</button>
+              
+            </div>
+          </div>
+          
         
       </div>
       <div class="galerie"></div>

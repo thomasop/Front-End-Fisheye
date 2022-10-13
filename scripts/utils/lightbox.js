@@ -7,7 +7,6 @@ function open() {
     });
     const photographerVideos = document.querySelectorAll(".galerie__video");
     photographerVideos.forEach((photographerVideo) => {
-      console.log(photographerVideo)
       photographerVideo.addEventListener('click', (video) => {
         openLightbox(video.target);
       });

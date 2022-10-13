@@ -106,18 +106,20 @@ header img {
 
 .media-sort {
     margin: 20px 100px;
+    display: flex;
+}
+
+.media-sort__div, .media-sort div {
+    display: flex;
+    flex-direction: column;
     
 }
 
-.media-sort span {
-    width: 74px;
-    height: 23px;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 23.44px;
+.media-sort__hidden {
+    display: none;
 }
 
-.media-sort__select {
+.media-sort__select, .media-sort__option {
     background-color: #901C1C;
     width: 170px;
     height: 69px;
@@ -126,14 +128,6 @@ header img {
     font-size: 18px;
     line-height: 23.44px;
     color: white;
-}
-
-.media-sort__option {
-    font-weight: 700;
-    width: 90px;
-    height: 23px;
-    font-size: 18px;
-    line-height: 23.44px;
 }
 
 .galerie {
