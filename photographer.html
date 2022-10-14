@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
     <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
     <title>Fisheye - photographe </title>
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <a href="/index.html" tabindex="0" alt="Fisheye Home page"><img src="assets/images/logo.png" alt="logo web site"></a>
+    <header class="header">
+      <a href="/index.html" tabindex="0"><img src="assets/images/logo.png" alt="logo web site"></a>
     </header>
     <main id="main">
       <div class="photograph-header">
@@ -20,22 +21,22 @@
             <button type="button" class="media-sort__select media-sort__active">Popularité</button>
             <div class="media-sort__div">
               <button type="button" class="media-sort__select media-sort__hidden">Popularité</button>
+              <span></span>
               <button type="button" class="media-sort__select media-sort__hidden">Date</button>
+              <span></span>
               <button type="button" class="media-sort__select media-sort__hidden">Titre</button>
               
             </div>
           </div>
-          
+          <img src="assets/icons/VectorDown.png" alt="test">
         
       </div>
       <div class="galerie"></div>
       <div id="lightbox">
         <div id="lightbox-modal">
-          <div>
-            <img src="assets/icons/VectorClose.png" class="lightbox-close" alt="close icon" onclick="closeLightbox()" />
-            <img src="assets/icons/VectorLeft.png" class="lightbox-left" alt="left icon" onclick="beforeLightbox()" />
-            <img src="assets/icons/VectorRight.png" class="lightbox-right" alt="right icon" onclick="nextLightbox()" />
-          </div>
+            <img src="assets/icons/VectorClose.png" class="lightbox-close" alt="close icon" onclick="closeLightbox()">
+            <img src="assets/icons/VectorLeft.png" class="lightbox-left" alt="left icon" onclick="beforeLightbox()">
+            <img src="assets/icons/VectorRight.png" class="lightbox-right" alt="right icon" onclick="nextLightbox()">
         </div>
       </div>
     </main>
@@ -43,7 +44,7 @@
 			<div class="modal">
 				<header>
           <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" tabindex="0" class="modal-close" alt="close icon" onclick="closeModal()" aria-labelledby="close-form-modal" />
+          <img src="assets/icons/close.svg" tabindex="0" class="modal-close" alt="close icon" onclick="closeModal()">
         </header>
 				<form>
 					<div>

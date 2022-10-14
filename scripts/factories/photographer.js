@@ -68,17 +68,23 @@ function photographerFactory(data) {
         article.appendChild(p);
         photographersSection.appendChild(article);
 
+        const articleContact = document.createElement( 'article' );
+        articleContact.setAttribute("class", "articleContact");
         const contact = document.createElement( 'button' );
         contact.setAttribute("class", "contact_button");
         contact.setAttribute("onclick", "displayModal()");
         contact.textContent = "Contactez-moi";
-        photographersSection.appendChild(contact)
+        articleContact.appendChild(contact);
+        photographersSection.appendChild(articleContact)
 
+        const articleImg = document.createElement( 'article' );
+        articleImg.setAttribute("class", "articleImg");
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("class", "photograph-header__img");
         img.setAttribute("alt", name);
-        photographersSection.appendChild(img)
+        articleImg.appendChild(img);
+        photographersSection.appendChild(articleImg)
 
         const priceD = document.createElement( 'div' );
         const like = document.createElement( 'div' );
@@ -91,6 +97,7 @@ function photographerFactory(data) {
         imgLike.setAttribute("alt", "like icone")
         like.appendChild(span);
         like.appendChild(imgLike);
+        /*
         const priceDay = document.createElement( 'h2' );
         priceDay.textContent = price + "€/jour"
         priceDay.setAttribute("class", "photograph__priceDay");
@@ -98,7 +105,7 @@ function photographerFactory(data) {
         priceD.appendChild(like);
         priceD.appendChild(priceDay);
         photographersSection.appendChild(priceD);
-
+        */
         const form = document.forms[0];
         form.insertAdjacentHTML('afterbegin', '<h3>' + name + '</h3>')
         return (photographersSection);
