@@ -221,12 +221,15 @@ header img:hover {
         font-size: 20px;
         text-align: center;
         width: unset;
+        line-height: unset;
+        margin-top: -5px;
     }
     
     .photograph-header__p {
         font-size: 14px;
         text-align: center;
         width: unset;
+        margin-bottom: 20px;
     }
 }
 
@@ -236,9 +239,11 @@ header img:hover {
 }
 
 .media-sort img {
-    position: absolute;
-    left: 340px;
-    top: 452px;
+    position: relative;
+    left: -25px;
+    width: 16px;
+    height: 10px;
+    top: 29px;
     transform: rotate(180deg);
 }
 
@@ -306,15 +311,6 @@ button[type="button"] {
     transform: scale(1.05);
 }
 
-@media screen and (max-width: 767px) {
-    .media-sort img {
-        position: absolute;
-        left: 0px;
-        top: 452px;
-        transform: rotate(180deg);
-    }
-}
-
 .galerie {
     display: -ms-grid;
     display: grid;
@@ -322,7 +318,7 @@ button[type="button"] {
     gap: 20px;
     grid-auto-flow: row;
     justify-content: space-between;
-    margin: 100px 100px;
+    margin: 50px 100px;
 }
 
 @media screen and (max-width: 1099px) and (min-width: 851px) {
@@ -363,6 +359,7 @@ button[type="button"] {
         grid-template-columns: 1fr !important;
         margin-top: 80px;
         margin: 0 auto;
+        gap: 35px;
         width: 250px;
     }
 
@@ -398,12 +395,7 @@ button[type="button"] {
 .galerie > div {
     margin-right: 80px;
     margin-bottom: 30px;
-    transition: all 400ms;
     cursor: pointer;
-}
-
-.galerie > div:hover {
-    transform: scale(1.05);
 }
 
 .galerie__div--flex {
@@ -424,6 +416,11 @@ button[type="button"] {
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+    transition: all 400ms;
+}
+
+.galerie img:hover {
+    transform: scale(1.05);
 }
 
 .galerie video {
@@ -456,6 +453,12 @@ button[type="button"] {
     padding: 0;
     border: none;
     background: none;
+    cursor: pointer;
+    transition: all 400ms;
+}
+
+.like:hover {
+    transform: scale(1.05);
 }
 
 #contact_modal {
@@ -620,7 +623,7 @@ form textarea {
 }
 
 .errorform {
-    color: red;
+    color: black;
     font-size: 28px;
 }
 
@@ -646,13 +649,17 @@ form textarea {
         width: 32px;
         height: 32px;
         margin: 0;
-        position: relative;
-        top: -150px;
-        right: -230px;
+        position: absolute;
+        top: 20px;
+        right: 15px;
     }
 
     .send_button {
         margin: 0 auto;
+    }
+
+    .errorform {
+        font-size: 20px;
     }
 }
 
@@ -683,6 +690,7 @@ form textarea {
     right: -1120px;
     top: 20px;
     cursor: pointer;
+    transition: all 400ms;
 }
 
 .lightbox-left {
@@ -690,6 +698,7 @@ form textarea {
     top: 400px;
     left: -10px;
     cursor: pointer;
+    transition: all 400ms;
 }
 
 .lightbox-right {
@@ -697,6 +706,19 @@ form textarea {
     top: 400px;
     right: -1050px;
     cursor: pointer;
+    transition: all 400ms;
+}
+
+.lightbox-close:hover {
+    transform: scale(1.1);
+}
+
+.lightbox-left:hover {
+    transform: scale(1.1);
+}
+
+.lightbox-right:hover {
+    transform: scale(1.1);
 }
 
 .lightbox-img {
@@ -803,16 +825,19 @@ form textarea {
         top: 0;
     }
     .lightbox-right {
-        right: -80px;
-        top: 550px;
+        left: 130px;
+        top: 490px;
+        position: absolute;
     }
     .lightbox-left {
-        right: 0px;
-        top: 550px;
+        left: 30px;
+        top: 490px;
+        position: absolute;
     }
     .lightbox-close {
-        right: -350px;
-        top: 550px;
+        position: absolute;
+        right: 20px;
+        top: 490px;
     }
 }
 
