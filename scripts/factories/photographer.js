@@ -17,10 +17,9 @@ function photographersFactory(data) {
         const link = document.createElement( 'a' );
         link.setAttribute("href", "/photographer.html?id=" + id);
         link.setAttribute("aria-label", name);
-        link.setAttribute("tabindex", "+0");
-        link.setAttribute("data-message", "this is form card photographer")
         const article = document.createElement( 'article' );
         const article2 = document.createElement( 'article' );
+        article2.setAttribute("title", "Photographer " + name);
         const img = document.createElement( 'img' );
         img.setAttribute("src", picture);
         img.setAttribute("alt", "")

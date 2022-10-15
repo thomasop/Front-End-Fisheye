@@ -38,20 +38,21 @@ h1 {
 }
 
 @media screen and (max-width: 767px) {
-    .header__logo {
-        display: block;
-        margin: 30px auto 0 auto;
-    }
-
     h1 {
         margin-right: 0px;
         text-align: center;
-        margin-bottom: -20px;
+        margin-bottom: 0px;
+        margin-top: 0px;
+    }
+
+    header img {
+        margin-top: 20px;
     }
 
     header {
         display: block;
         width: 100%;
+        text-align: center;
     }
 }
 
