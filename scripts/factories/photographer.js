@@ -1,13 +1,19 @@
-function factory(data, type) {
+// Pattern Factory
+function factory(data, type, allLike) {
     if (type == 'photographers') {
         return photographersFactory(data);
     } else if (type == 'photographer') {
-        return photographerFactory(data);
+        return photographerFactory(data, allLike);
     } else {
-        return mediaFactory(data);
+        if (data.image) {
+            return imageFactory(data);
+        } else {
+            return videoFactory(data);
+        }
     }
 }
 
+// Creation des élements DOM pour tous les photographes
 function photographersFactory(data) {
     const { id, name, city, country, tagline, price, portrait } = data;
 
@@ -44,7 +50,8 @@ function photographersFactory(data) {
     return { name, picture, getUserCardDOM }
 }
 
-function photographerFactory(data) {
+// Creation des élements DOM pour un photographe
+function photographerFactory(data, allLike) {
     const { id, name, portrait, city, country, tagline, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
@@ -72,6 +79,7 @@ function photographerFactory(data) {
         const contact = document.createElement( 'button' );
         contact.setAttribute("class", "contact_button");
         contact.setAttribute("onclick", "displayModal()");
+        contact.setAttribute("aria-label", "Contact Me")
         contact.textContent = "Contactez-moi";
         articleContact.appendChild(contact);
         photographersSection.appendChild(articleContact)
@@ -89,22 +97,22 @@ function photographerFactory(data) {
         const like = document.createElement( 'div' );
         const span = document.createElement( 'span' );
         span.setAttribute("id", "photograph__span")
-        span.textContent = "297 081";
+        span.textContent = allLike;
         const imgLike = document.createElement( 'img' );
         imgLike.setAttribute("id", "photograph__like");
-        imgLike.setAttribute("src", "assets/icons/Vector.png");
+        imgLike.setAttribute("src", "assets/icons/VectorAll.png");
         imgLike.setAttribute("alt", "like icone")
         like.appendChild(span);
         like.appendChild(imgLike);
-        /*
+        
         const priceDay = document.createElement( 'h2' );
-        priceDay.textContent = price + "€/jour"
+        priceDay.textContent = price + "€ / jour"
         priceDay.setAttribute("class", "photograph__priceDay");
         priceD.setAttribute("class", "photograph__price");
         priceD.appendChild(like);
         priceD.appendChild(priceDay);
         photographersSection.appendChild(priceD);
-        */
+        
         const form = document.forms[0];
         form.insertAdjacentHTML('afterbegin', '<h3>' + name + '</h3>')
         return (photographersSection);
@@ -112,78 +120,82 @@ function photographerFactory(data) {
     return { name, getUserCardDOM }
 }
 
-function mediaFactory(data) {
-    if (data.image) {
-        const picture = `assets/media/${data.image}`;
-        
-        function getUserCardDOM() {
-            const mediaSection = document.querySelector(".galerie");
-            const img = document.createElement( 'img' );
-            img.setAttribute("src", picture);
-            img.setAttribute("class", "galerie__img");
-            img.setAttribute("alt", data.title);
-            //link.appendChild(img);
-            const div = document.createElement( 'div' );
-            const divFlex = document.createElement( 'div' );
-            divFlex.setAttribute("class", "galerie__div--flex")
-            const p = document.createElement( 'h2' );
-            p.textContent = data.title;
-            p.setAttribute("class", "galerie__p");
-            const span = document.createElement( 'span' );
-            span.textContent = data.likes;
-            span.setAttribute("class", "galerie__span");
-            divFlex.appendChild(p);
-            divFlex.appendChild(span);
-            const button = document.createElement('button');
-            button.setAttribute("class", "like");
-            const i = document.createElement( 'img' );
-            i.setAttribute("src", "assets/icons/Vector.png");
-            i.setAttribute("alt", "like icone")
-            i.setAttribute("class", "galerie__icone");
-            button.appendChild(i)
-            span.appendChild(button);
-
-            div.appendChild(img);
-            div.appendChild(divFlex);
-            mediaSection.appendChild(div);
-        }
-    } else {
-        const videoData = `assets/media/${data.video}`;
-        function getUserCardDOM() {
-            const mediaSection = document.querySelector(".galerie");
-            const video = document.createElement( 'video' );
-            video.setAttribute("class", "galerie__video");
-            video.setAttribute("controls", true);
-            const source = document.createElement( 'source' );
-            source.setAttribute("src", videoData);
-            source.setAttribute("type", "video/mp4");
-            video.appendChild(source);
-            const div = document.createElement( 'div' );
-            const divFlex = document.createElement( 'div' );
-            divFlex.setAttribute("class", "galerie__div--flex")
-            const p = document.createElement( 'h2' );
-            p.textContent = data.title;
-            p.setAttribute("class", "galerie__p");
-            const span = document.createElement( 'span' );
-            span.textContent = data.likes;
-            span.setAttribute("class", "galerie__span");
-            const button = document.createElement('button');
-            button.setAttribute("class", "like");
-            const i = document.createElement( 'img' );
-            i.setAttribute("src", "assets/icons/Vector.png");
-            i.setAttribute("class", "galerie__icone");
-            i.setAttribute("alt", "like icone")
-            button.appendChild(i);
-            span.appendChild(button);
-
-            divFlex.appendChild(p);
-            divFlex.appendChild(span);
-
-            div.appendChild(video);
-            div.appendChild(divFlex);
-            mediaSection.appendChild(div);
-        }
-    }
+// Creation des élements DOM pour toutes les images d'un photographe
+function imageFactory(data) {
+    const { id, title, image, likes } = data;
+    const picture = `assets/media/${image}`;
     
+    function getUserCardDOM() {
+        const mediaSection = document.querySelector(".galerie");
+        const img = document.createElement( 'img' );
+        img.setAttribute("src", picture);
+        img.setAttribute("class", "galerie__img");
+        img.setAttribute("alt", title);
+        img.setAttribute("tabindex", "0");
+        const div = document.createElement( 'div' );
+        const divFlex = document.createElement( 'div' );
+        divFlex.setAttribute("class", "galerie__div--flex")
+        const p = document.createElement( 'h2' );
+        p.textContent = title;
+        p.setAttribute("class", "galerie__p");
+        const span = document.createElement( 'span' );
+        span.textContent = likes;
+        span.setAttribute("class", "galerie__span");
+        span.setAttribute("id", id);
+        divFlex.appendChild(p);
+        divFlex.appendChild(span);
+        const i = document.createElement( 'img' );
+        i.setAttribute("tabindex", "0");
+        i.setAttribute("src", "assets/icons/Vector.png");
+        i.setAttribute("alt", "likes")
+        i.setAttribute("class", "galerie__icone");
+        span.appendChild(i);
+
+        div.appendChild(img);
+        div.appendChild(divFlex);
+        mediaSection.appendChild(div);
+    }
+    return { getUserCardDOM }
+}
+
+// Creation des élements DOM pour toutes les videos d'un photographe
+function videoFactory(data) {
+    const { id, title, video, likes } = data;
+    const videoData = `assets/media/${video}`;
+    function getUserCardDOM() {
+        const mediaSection = document.querySelector(".galerie");
+        const video = document.createElement( 'video' );
+        video.setAttribute("class", "galerie__video");
+        video.setAttribute("tabindex", "0");
+        video.setAttribute("controls", true);
+        video.setAttribute("aria-label", title);
+        const source = document.createElement( 'source' );
+        source.setAttribute("src", videoData);
+        source.setAttribute("type", "video/mp4");
+        video.appendChild(source);
+        const div = document.createElement( 'div' );
+        const divFlex = document.createElement( 'div' );
+        divFlex.setAttribute("class", "galerie__div--flex")
+        const p = document.createElement( 'h2' );
+        p.textContent = title;
+        p.setAttribute("class", "galerie__p");
+        const span = document.createElement( 'span' );
+        span.textContent = likes;
+        span.setAttribute("id", id);
+        span.setAttribute("class", "galerie__span");
+        const i = document.createElement( 'img' );
+        i.setAttribute("tabindex", "0");
+        i.setAttribute("src", "assets/icons/Vector.png");
+        i.setAttribute("class", "galerie__icone");
+        i.setAttribute("alt", "like icone")
+        span.appendChild(i);
+
+        divFlex.appendChild(p);
+        divFlex.appendChild(span);
+
+        div.appendChild(video);
+        div.appendChild(divFlex);
+        mediaSection.appendChild(div);
+    }
     return { getUserCardDOM }
 }

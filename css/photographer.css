@@ -87,6 +87,7 @@ header img:hover {
     text-align: right;
     width: 87px;
     height: 31px;
+    margin-right: 10px;
 }
 
 .photograph__priceDay {
@@ -95,6 +96,13 @@ header img:hover {
     line-height: 31.25px;
     text-align: center;
     margin-right: 34px;
+}
+
+@media screen and (max-width: 467px) {
+    .photograph__price {
+        width: 100%;
+        right: unset;
+    }
 }
 
 #photograph__like {
@@ -109,8 +117,6 @@ header img:hover {
     line-height: 83.33px;
     color: #D3573C;
     margin: 0;
-    height: 83px;
-    width: 282px;
 }
 
 .photograph-header__h2 {
@@ -118,8 +124,6 @@ header img:hover {
     font-size: 24px;
     line-height: 31.25px;
     margin: 0;
-    height: 31px;
-    width: 124px;
     color: #901C1C;
 }
 
@@ -128,8 +132,6 @@ header img:hover {
     font-size: 18px;
     line-height: 23.44px;
     margin: 0;
-    height: 23px;
-    width: 348px;
     color: #525252;
 }
 
@@ -275,6 +277,13 @@ button[type="button"] {
     }
 }
 
+@media screen and (max-width: 400px) {
+    .media-sort p{
+        margin-left: -25px;
+        min-width: 70px;
+    }
+}
+
 .media-sort__div, .media-sort div {
     display: flex;
     flex-direction: column;
@@ -312,13 +321,12 @@ button[type="button"] {
 }
 
 .galerie {
-    display: -ms-grid;
     display: grid;
     grid-template-columns: 350px 350px 350px;
     gap: 20px;
     grid-auto-flow: row;
     justify-content: space-between;
-    margin: 50px 100px;
+    margin: 50px 100px 100px 100px;
 }
 
 @media screen and (max-width: 1099px) and (min-width: 851px) {
@@ -326,7 +334,7 @@ button[type="button"] {
         grid-template-columns: 350px 350px;
         justify-content: space-between;
         gap: 60px;
-        margin: 0 50px;
+        margin: 0 50px 75px 50px;
     }
 }
 
@@ -358,7 +366,7 @@ button[type="button"] {
     .galerie {
         grid-template-columns: 1fr !important;
         margin-top: 80px;
-        margin: 0 auto;
+        margin: 0 auto 100px auto;
         gap: 35px;
         width: 250px;
     }
@@ -528,7 +536,6 @@ button[type="button"] {
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
-    align-self: left;
     font-weight: 700;
     font-size: 20px;
     line-height: 26.04px;

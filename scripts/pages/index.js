@@ -1,33 +1,31 @@
-    async function getPhotographers() {
-        // Penser à remplacer par les données récupérées dans le json
-        try {
-            var dataJson = await fetch("./data/photographers.json");
-            var data = await dataJson.json();
-            var photographers = data.photographers;
-            // et bien retourner le tableau photographers seulement une fois
-            return ({
-                photographers: [...photographers]})
-        } catch {
-            console.log("error");
-        }
-        
+// Obtention des photographes
+async function getPhotographers() {
+    try {
+        var dataJson = await fetch("./data/photographers.json");
+        var data = await dataJson.json();
+        var photographers = data.photographers;
+        return ({
+            photographers: [...photographers]})
+    } catch {
+        console.log("error");
     }
-
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
-
-        photographers.forEach((photographer) => {
-            const photographerModel = factory(photographer, 'photographers');
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    };
-
-    async function init() {
-        // Récupère les datas des photographes
-        const { photographers } = await getPhotographers();
-        displayData(photographers);
-    };
     
-    init();
-    
+}
+
+// Affichage des différents photographes
+async function displayData(photographers) {
+    const photographersSection = document.querySelector(".photographer_section");
+    photographers.forEach((photographer) => {
+        const photographerModel = factory(photographer, 'photographers');
+        const userCardDOM = photographerModel.getUserCardDOM();
+        photographersSection.appendChild(userCardDOM);
+    });
+};
+
+// Récupère les datas des photographes
+async function init() {
+    const { photographers } = await getPhotographers();
+    displayData(photographers);
+};
+
+init();

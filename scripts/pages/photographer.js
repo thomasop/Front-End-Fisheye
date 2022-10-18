@@ -1,7 +1,5 @@
-
-//Mettre le code JavaScript lié à la page photographer.html
+// Obtention d'un photographe et de ses médias graçe à l'id passé en URL
 async function getPhotographers(id) {
-    // Penser à remplacer par les données récupérées dans le json
     try{
         const response = await fetch('./data/photographers.json')
         const data = await response.json()
@@ -13,54 +11,52 @@ async function getPhotographers(id) {
         });
         return ({
             photographer: [...photographer],
-            medias: [...medias]
+            medias: [...medias],
         })
     }catch{
         console.log('error')
     }
 }
 
-async function displayData(photographer) {
+// Affichage d'un photographe
+async function displayPhotographer(photographer, medias) {
+    var allLike = 0;
+    medias.forEach(like => {
+        allLike = allLike + like.likes;
+    });
     photographer.forEach(element => {
-        const photographerModel = factory(element, 'photographer');
-        const userCardDOM = photographerModel.getUserCardDOM();
+        const photographerModel = factory(element, 'photographer', allLike);
+        photographerModel.getUserCardDOM();
     });
 };
 
+// Affichage des différents médias d'un photographe
 async function displayMedia(medias) {
-    sortBy(medias);
     medias.forEach(element => {
         const photographerModel = factory(element, 'media');
-        const userCardDOM = photographerModel.getUserCardDOM();
+        photographerModel.getUserCardDOM();
     });
-    open();
     like(medias);
+    openSort(medias);
+    open();
 }
 
-async function displaySort(medias) {
+// Affichage des différents médias trié d'un photographe
+async function displayMediaSort(medias) {
     medias.forEach(element => {
         const photographerModel = factory(element, 'media');
-        const userCardDOM = photographerModel.getUserCardDOM();
+        photographerModel.getUserCardDOM();
     });
-    open();
     like(medias);
+    open();
 }
 
-async function test(medias) {
-    var hiddenBtn = document.querySelectorAll(".media-sort__hidden");
-    hiddenBtn.forEach((btn) => {
-        btn.classList.remove('media-sort__hidden');
-    });
-    sort(medias)
-    
-}
-
+// Récupère les datas des photographes
 async function init() {
-    // Récupère les datas des photographes
     let str = new URLSearchParams(window.location.search);
     let id = str.get("id");
     const { photographer, medias } = await getPhotographers(id);
-    await displayData(photographer);
+    await displayPhotographer(photographer, medias);
     await displayMedia(medias);
 };
 

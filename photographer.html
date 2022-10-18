@@ -9,59 +9,58 @@
     <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header class="header">
-      <a href="/index.html"><img src="assets/images/logo.png" alt="logo web site"></a>
+    <header role="banner" class="header">
+      <a href="/index.html"><img src="assets/images/logo.png" alt="Fisheye Home page"></a>
     </header>
-    <main id="main">
-      <div class="photograph-header">
+    <main role="main" id="main">
+      <div class="photograph-header" aria-label="photographer information">
       </div>
       <div class="media-sort">
           <p>Trier par</p>
           <div>
-            <button type="button" class="media-sort__select media-sort__active">Popularité</button>
-            <div class="media-sort__div">
-              <button type="button" class="media-sort__select media-sort__hidden">Popularité</button>
+            <button type="button" class="media-sort__select media-sort__active" aria-haspopup="true" aria-expanded="false" aria-label="trier par filtres" tabindex="0">Popularité</button>
+            <div role="listbox" class="media-sort__div" aria-expanded="true" aria-activedescendant="option1">
+              <button id="option1" type="button" class="media-sort__select media-sort__hidden" aria-label="trier par popularité" tabindex="0">Popularité</button>
               <span></span>
-              <button type="button" class="media-sort__select media-sort__hidden">Date</button>
+              <button type="button" class="media-sort__select media-sort__hidden" aria-label="trier par date" tabindex="0">Date</button>
               <span></span>
-              <button type="button" class="media-sort__select media-sort__hidden">Titre</button>
-              
+              <button type="button" class="media-sort__select media-sort__hidden" aria-label="trier par titre" tabindex="0">Titre</button>
             </div>
           </div>
-          <img src="assets/icons/VectorDown.png" alt="test">
+          <img src="assets/icons/VectorDown.png" alt="close listbox">
         
       </div>
       <div class="galerie"></div>
       <div id="lightbox">
-        <div id="lightbox-modal">
-            <img src="assets/icons/VectorClose.png" class="lightbox-close" alt="close icon" onclick="closeLightbox()">
-            <img src="assets/icons/VectorLeft.png" class="lightbox-left" alt="left icon" onclick="beforeLightbox()">
-            <img src="assets/icons/VectorRight.png" class="lightbox-right" alt="right icon" onclick="nextLightbox()">
+        <div id="lightbox-modal" aria-label="image closeup view">
+            <img id="lightbox-close" src="assets/icons/VectorClose.png" class="lightbox-close" alt="Close dialog" onclick="closeLightbox()" tabindex="0">
+            <img id="lightbox-left" src="assets/icons/VectorLeft.png" class="lightbox-left" alt="Previous image" onclick="previousLightbox()" tabindex="0">
+            <img id="lightbox-right" src="assets/icons/VectorRight.png" class="lightbox-right" alt="Next image" onclick="nextLightbox()" tabindex="0">
         </div>
       </div>
     </main>
     <div id="contact_modal">
-			<div class="modal">
+			<div class="modal" aria-labelledby="contactTitle">
 				<header>
-          <h2>Contactez-moi</h2>
-          <img src="assets/icons/close.svg" tabindex="0" class="modal-close" alt="close icon" onclick="closeModal()">
+          <h2 id="contactTitle">Contactez-moi</h2>
+          <img src="assets/icons/close.svg" class="modal-close" alt="Close Contact form" tabindex="0">
         </header>
 				<form>
 					<div>
-						<label for="fistName">Prénom</label>
-						<input type="text" name="fistName" id="fistName" tabindex="0">
+						<label id="firstLabel" for="fistName">Prénom</label>
+						<input type="text" name="fistName" id="fistName" tabindex="0" aria-labelledby="firstLabel">
             <div class="errorform"></div>
-            <label for="lastName">Nom</label>
-						<input type="text" name="lastName" id="lastName" tabindex="0">
+            <label id="lastLabel" for="lastName">Nom</label>
+						<input type="text" name="lastName" id="lastName" tabindex="0" aria-labelledby="lastLabel">
             <div class="errorform"></div>
-            <label for="mail">Email</label>
-						<input type="email" name="mail" id="mail" tabindex="0">
+            <label id="emailLabel" for="mail">Email</label>
+						<input type="email" name="mail" id="mail" tabindex="0" aria-labelledby="emailLabel">
             <div class="errorform"></div>
-            <label for="message">Votre message</label>
-            <textarea name="message" id="message" tabindex="0"></textarea>
+            <label id="messageLabel" for="message">Votre message</label>
+            <textarea name="message" id="message" tabindex="0" aria-labelledby="messageLabel"></textarea>
             <div class="errorform"></div>
 					</div>
-          <button class="send_button">Envoyer</button>
+          <button class="send_button" aria-label="Send">Envoyer</button>
 				</form>
 			</div>
 		</div>

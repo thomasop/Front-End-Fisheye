@@ -4,17 +4,32 @@ function open() {
       photographerPicture.addEventListener('click', (picture) => {
         openLightbox(picture.target);
       });
+      photographerPicture.addEventListener('keydown', (picture) => {
+        if(picture.key == 'Enter') {
+          openLightbox(picture.target);
+        }
+      })
     });
     const photographerVideos = document.querySelectorAll(".galerie__video");
     photographerVideos.forEach((photographerVideo) => {
       photographerVideo.addEventListener('click', (video) => {
         openLightbox(video.target);
       });
+      photographerVideo.addEventListener('keydown', (video) => {
+        if(video.key == 'Enter') {
+          openLightbox(video.target);
+        }
+      })
     });
-    
 }
 
+// Ouverture de la ligthbox
 function openLightbox(media) {
+  document.querySelector("header").style.display = "none";
+  document.querySelector(".photograph-header").style.display = "none";
+  document.querySelector(".media-sort").style.display = "none";
+  document.querySelector(".galerie").style.display = "none";
+  ligthboxKeydown();
   if (media.lastChild == null) {
     const lightbox = document.getElementById("lightbox");
     const lightModal = document.getElementById("lightbox-modal");
@@ -33,13 +48,19 @@ function openLightbox(media) {
   }
 }
 
+// Fermeture de la ligthbox
 function closeLightbox() {
   const lightbox = document.getElementById("lightbox");
   const lightModal = document.getElementById("lightbox-modal");
   lightModal.removeChild(lightModal.lastChild);
   lightbox.style.display = "none";
+  document.querySelector("header").style.display = "flex";
+  document.querySelector(".photograph-header").style.display = "flex";
+  document.querySelector(".media-sort").style.display = "flex";
+  document.querySelector(".galerie").style.display = "grid";
 }
 
+// Média suivant dans la lightbox
 function nextLightbox() {
   const allPicture = document.querySelectorAll(".galerie > * > :first-child");
   const lightModal = document.getElementById("lightbox-modal");
@@ -64,7 +85,8 @@ function nextLightbox() {
   }
 }
 
-function beforeLightbox() {
+// Média précédant dans la lightbox
+function previousLightbox() {
   const allPicture = document.querySelectorAll(".galerie > * > :first-child");
   const lightModal = document.getElementById("lightbox-modal");
   const currentPicture = document.querySelector(".lightbox-img");
@@ -88,6 +110,7 @@ function beforeLightbox() {
   }
 }
 
+// Création du DOM image
 function lightboxImg (arrayPicture, lightModal) {
   let img = document.createElement("img");
   img.setAttribute("src", arrayPicture.getAttribute("src"));
@@ -96,12 +119,13 @@ function lightboxImg (arrayPicture, lightModal) {
   lightModal.appendChild(img);
 }
 
+// Création du DOM video
 function lightboxVideo (arrayVideo, lightModal) {
   const videoSrc = arrayVideo.firstChild;
   let video = document.createElement("video");
   video.setAttribute("controls", "");
-  video.setAttribute("playinline", "");
   video.setAttribute("class", "lightbox-img");
+  video.setAttribute("aria-label", arrayVideo.ariaLabel);
   const source = document.createElement( 'source' );
   source.setAttribute("src", videoSrc.src);
   source.setAttribute("type", "video/mp4");
@@ -111,4 +135,25 @@ function lightboxVideo (arrayVideo, lightModal) {
   video.appendChild(source);
   video.appendChild(track);
   lightModal.appendChild(video);
+}
+
+function ligthboxKeydown() {
+  const lightboxClose = document.querySelector("#lightbox-close");
+  lightboxClose.addEventListener('keydown', (e) => {
+    if(e.key == 'Enter') {
+      closeLightbox();
+    }
+  })
+  const lightboxNext = document.querySelector("#lightbox-right");
+  lightboxNext.addEventListener('keydown', (e) => {
+    if(e.key == 'Enter') {
+      nextLightbox();
+    }
+  })
+  const lightboxBefore = document.querySelector("#lightbox-left");
+  lightboxBefore.addEventListener('keydown', (e) => {
+    if(e.key == 'Enter') {
+      previousLightbox();
+    }
+  })
 }

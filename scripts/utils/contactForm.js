@@ -1,35 +1,48 @@
+// Ouverture de la modal
 function displayModal() {
     const modal = document.getElementById("contact_modal");
 	modal.style.display = "block";
     const input = document.querySelector('form input');
     const closeBtn = document.querySelector('.modal-close');
-    input.focus();
+    closeBtn.focus();
 }
 
+// Fermeture de la modal
 function closeModal() {
     const modal = document.getElementById("contact_modal");
     modal.style.display = "none";
 }
 
+// Element DOM
 const firstName = document.forms[0][0];
 const lastName = document.forms[0][1];
 const email = document.forms[0][2];
 const message = document.forms[0][3];
 
+// Regex
 const mailregex = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,})+)$/;
 const TextRegex = /^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+$/;
 
-function closeForm() {
-    const modal = document.getElementById("contact_modal");
+// Envoie du formulaire
+function formSend() {
     console.log(`Firstname: ${firstName.value}, Lastname: ${lastName.value}`);
     console.log(`Email: ${email.value}, Message: ${message.value}`);
     document.forms[0].reset();
-    document.addEventListener('keydown', (e) => {
-        if (e.key !== 'Escape') return;
-        modal.style.display = 'none';
-      });
     closeModal();
 }
+
+const closeBtn = document.querySelector('.modal-close');
+// Fermeture de la modal
+closeBtn.addEventListener('click', (e) => {
+    closeModal();
+})
+
+// Fermeture de la modal avec le clavier
+closeBtn.addEventListener('keydown', (e) => {
+    if(e.key == 'Enter') {
+        closeModal();
+    }
+  })
 
 // error message
 const messagesErrors = {
@@ -45,7 +58,7 @@ document.forms[0][1].addEventListener("input", isLastNameValid);
 document.forms[0][2].addEventListener("input", isEmailValid);
 document.forms[0][3].addEventListener("input", isMessageValid);
 
-// check if firstname data is valid, return true if valid or false if not valid
+// Vérifie si prenom est valide, retourne true si c'est valide ou false si ce n'est pas valide
 function isFirstNameValid() {
     if (firstName.value.trim() == "" || firstName.value.length < 2 || TextRegex.test(firstName.value) == false) {
       return showErrorMessage(0);
@@ -54,7 +67,7 @@ function isFirstNameValid() {
     }
 }
 
-// check if lastname data is valid, return true if valid or false if not valid
+// Vérifie si nom est valide, retourne true si c'est valide ou false si ce n'est pas valide
 function isLastNameValid() {
     if (lastName.value.trim() == "" || lastName.value.length < 2 || TextRegex.test(lastName.value) == false) {
         return showErrorMessage(1);
@@ -63,7 +76,7 @@ function isLastNameValid() {
     }
 }
 
-// check if email data is valid, return true if valid or false if not valid
+// Vérifie si mail est valide, retourne true si c'est valide ou false si ce n'est pas valide
 function isEmailValid() {
     if (mailregex.test(email.value) == true) {
         return hideErrorMessage(2);
@@ -72,6 +85,7 @@ function isEmailValid() {
     }
 }
 
+// Vérifie si message est valide, retourne true si c'est valide ou false si ce n'est pas valide
 function isMessageValid() {
     if (message.value.length >= 2) {
         return hideErrorMessage(3);
@@ -97,10 +111,11 @@ function hideErrorMessage(l) {
 const sendForm = document.querySelector(".send_button");
 sendForm.addEventListener("click", validate);
 
+// vérification des données
 function validate(e) {
     e.preventDefault();
     if (isFirstNameValid() == true && isLastNameValid() == true && isEmailValid() == true && isMessageValid() == true) {
-        closeForm();
+        formSend();
       } else {
         isFirstNameValid(firstName);
         isLastNameValid(lastName);
