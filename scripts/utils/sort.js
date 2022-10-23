@@ -37,24 +37,24 @@ function sortBy(array) {
   allBtn.forEach((sortBtn) => {
     sortBtn.addEventListener("click", (sortr) => {
       var mediaLike = searchMediaLike(array);
-      if (sortr.path[0].textContent === "Titre") {
+      if (sortr.target.textContent === "Titre") {
         array.sort(function (a, b) {
           return a.title !== b.title ? (a.title < b.title ? -1 : 1) : 0;
         });
         searchMediaLiked(array, mediaLike);
-        changeDataBtn(sortr.path[0], allBtn);
-      } else if (sortr.path[0].textContent === "Date") {
+        changeDataBtn(sortr.target, allBtn);
+      } else if (sortr.target.textContent === "Date") {
         array.sort(function (a, b) {
           return new Date(b.date) - new Date(a.date);
         });
         searchMediaLiked(array, mediaLike);
-        changeDataBtn(sortr.path[0], allBtn);
-      } else if (sortr.path[0].textContent === "Popularité") {
+        changeDataBtn(sortr.target, allBtn);
+      } else if (sortr.target.textContent === "Popularité") {
         array.sort(function (a, b) {
           return parseFloat(b.likes) - parseFloat(a.likes);
         });
         searchMediaLiked(array, mediaLike);
-        changeDataBtn(sortr.path[0], allBtn);
+        changeDataBtn(sortr.target, allBtn);
       }
       deleteMedia();
       displayMediaSort(array);
@@ -94,6 +94,7 @@ function closeSort() {
   activeBtn.classList.remove("media-sort__hidden");
 }
 
+// chervher les médias déjà liker
 function searchMediaLike(array) {
   var mediaLike = document.querySelectorAll(".galerie__span");
   var liked = [];

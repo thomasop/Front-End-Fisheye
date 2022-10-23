@@ -1,3 +1,4 @@
+// Ecoute d'un évennement sur un média pour ouvrir la ligthbox
 function open() {
   const photographerPictures = document.querySelectorAll(".galerie__img");
   photographerPictures.forEach((photographerPicture) => {
@@ -138,6 +139,7 @@ function lightboxVideo(arrayVideo, lightModal) {
   let video = document.createElement("video");
   video.setAttribute("controls", "");
   video.setAttribute("class", "lightbox-img");
+  video.setAttribute("poster", arrayVideo.poster)
   video.setAttribute("aria-label", arrayVideo.ariaLabel);
   const source = document.createElement("source");
   source.setAttribute("src", videoSrc.src);
@@ -154,6 +156,7 @@ function lightboxVideo(arrayVideo, lightModal) {
   lightModal.appendChild(p);
 }
 
+// Ecoute d'un évennement au clavier sur un média
 function ligthboxKeydown() {
   const lightboxClose = document.querySelector("#lightbox-close");
   lightboxClose.addEventListener("keydown", (e) => {

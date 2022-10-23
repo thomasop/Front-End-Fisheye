@@ -23,6 +23,7 @@ function photographersFactory(data) {
     const link = document.createElement("a");
     link.setAttribute("href", "/photographer.html?id=" + id);
     link.setAttribute("aria-label", name);
+    link.setAttribute("tabindex", "0");
     const article = document.createElement("article");
     const article2 = document.createElement("article");
     article2.setAttribute("title", "Photographer " + name);
@@ -147,7 +148,7 @@ function imageFactory(data) {
     const i = document.createElement("img");
     i.setAttribute("tabindex", "0");
     i.setAttribute("src", "assets/icons/Vector.png");
-    i.setAttribute("alt", "likes");
+    i.setAttribute("alt", "likes icone");
     i.setAttribute("class", "galerie__icone formFocus");
     span.appendChild(i);
 
@@ -160,7 +161,7 @@ function imageFactory(data) {
 
 // Creation des élements DOM pour toutes les videos d'un photographe
 function videoFactory(data) {
-  const { id, title, video, likes } = data;
+  const { id, title, video, likes, poster } = data;
   const videoData = `assets/media/${video}`;
   function getUserCardDOM() {
     const mediaSection = document.querySelector(".galerie");
@@ -168,6 +169,7 @@ function videoFactory(data) {
     video.setAttribute("class", "galerie__video formFocus");
     video.setAttribute("tabindex", "0");
     video.setAttribute("controls", true);
+    video.setAttribute("poster", "assets/images/" + poster)
     video.setAttribute("aria-label", title);
     const source = document.createElement("source");
     source.setAttribute("src", videoData);

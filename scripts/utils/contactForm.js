@@ -37,10 +37,12 @@ const message = document.forms[0][3];
 const mailregex = /^([\w\.\-]+)@([\w\-]+)((\.(\w){2,})+)$/;
 const TextRegex =
   /^[a-zA-ZàèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ]+$/;
+const messageRegex =
+  /^[a-zA-Z0-9àèìòùÀÈÌÒÙáéíóúýÁÉÍÓÚÝâêîôûÂÊÎÔÛãñõÃÑÕäëïöüÿÄËÏÖÜŸçÇßØøÅåÆæœ?!;,\.]+$/;
 
 // Envoie du formulaire
 function formSend() {
-  console.log(`Firstname: ${firstName.value}, Lastname: ${lastName.value}`);
+  console.log(`Prénom: ${firstName.value}, Nom: ${lastName.value}`);
   console.log(`Email: ${email.value}, Message: ${message.value}`);
   document.forms[0].reset();
   closeModal();
@@ -110,10 +112,10 @@ function isEmailValid() {
 
 // Vérifie si message est valide, retourne true si c'est valide ou false si ce n'est pas valide
 function isMessageValid() {
-  if (message.value.length >= 2) {
-    return hideErrorMessage(3);
-  } else {
+  if (message.value.length < 2 || messageRegex.test(message.value) == false) {
     return showErrorMessage(3);
+  } else {
+    return hideErrorMessage(3);
   }
 }
 

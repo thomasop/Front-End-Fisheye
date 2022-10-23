@@ -1,5 +1,5 @@
 // Obtention d'un photographe et de ses médias graçe à l'id passé en URL
-async function getPhotographers(id) {
+async function getPhotographer(id) {
   try {
     const response = await fetch("./data/photographers.json");
     const data = await response.json();
@@ -55,7 +55,7 @@ async function displayMediaSort(medias) {
 async function init() {
   let str = new URLSearchParams(window.location.search);
   let id = str.get("id");
-  const { photographer, medias } = await getPhotographers(id);
+  const { photographer, medias } = await getPhotographer(id);
   await displayPhotographer(photographer, medias);
   await displayMedia(medias);
 }

@@ -15,17 +15,17 @@ function like(medias) {
 
 // Ajout d'un like
 function addLike(e, medias) {
-  var currentLike = e.path[1].childNodes[0].nodeValue;
+  var currentLike = e.srcElement.parentNode.textContent;
   var totalLike = document.querySelector("#photograph__span");
   var oldLike = medias.filter(function (likeMedia) {
     return likeMedia.likes === parseInt(currentLike);
   });
   oldLike.forEach((likeArray) => {
-    if (likeArray.id == e.path[1].id) {
+    if (likeArray.id == e.srcElement.parentNode.id) {
       if (likeArray.length == 0) {
         console.log("Déja liker");
       } else {
-        e.path[1].childNodes[0].textContent = parseInt(currentLike) + 1;
+        e.srcElement.parentNode.childNodes[0].textContent = parseInt(currentLike) + 1;
         totalLike.textContent = parseInt(totalLike.textContent) + 1;
       }
     }

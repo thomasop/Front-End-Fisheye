@@ -19,6 +19,12 @@ header img:hover {
     }
 }
 
+@media screen and (max-width: 825px) {
+    .header img {
+        margin: 0 20px;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .header {
         display: flex !important;
@@ -49,10 +55,18 @@ header img:hover {
     }
 }
 
+@media screen and (max-width: 825px) {
+    .photograph-header {
+        margin: 0 20px;
+        padding: 20px;
+    }
+}
+
 @media screen and (max-width: 767px) {
     .photograph-header {
         display: block;
         margin: 0 auto !important;
+        padding: 0px;
     }
 }
 
@@ -114,8 +128,9 @@ header img:hover {
 .photograph-header__h1 {
     font-weight: 400;
     font-size: 64px;
-    line-height: 83.33px;
+    line-height: 63.33px;
     color: #D3573C;
+    margin-bottom: 20px !important;
     margin: 0;
 }
 
@@ -164,8 +179,9 @@ header img:hover {
     .photograph-header__h1 {
         font-size: 59px;
         width: unset;
+        max-width: 380px;
     }
-    
+
     .photograph-header__h2 {
         font-size: 22px;
         width: unset;
@@ -186,6 +202,8 @@ header img:hover {
 
     .photograph-header__h1 {
         font-size: 54px;
+        line-height: 60.33px;
+        padding-top: 20px;
     }
     
     .photograph-header__h2 {
@@ -217,6 +235,10 @@ header img:hover {
         font-size: 54px;
         text-align: center;
         width: unset;
+        max-width: unset;
+        padding-left: 20px;
+        padding-right: 20px;
+        padding-bottom: 0px;
     }
     
     .photograph-header__h2 {
@@ -279,8 +301,8 @@ button[type="button"] {
 
 @media screen and (max-width: 400px) {
     .media-sort p{
-        margin-left: -25px;
-        min-width: 70px;
+        margin-left: -30px;
+        min-width: 75px;
     }
 }
 
@@ -428,7 +450,7 @@ button[type="button"] {
 }
 
 .galerie img:hover {
-    transform: scale(1.05);
+    transform: scale(1.07);
 }
 
 .galerie video {
@@ -436,6 +458,11 @@ button[type="button"] {
     height: 300px;
     object-fit: cover;
     border-radius: 5px;
+    transition: all 400ms;
+}
+
+.galerie video:hover {
+    transform: scale(1.07);
 }
 
 .galerie__p {
@@ -508,13 +535,13 @@ button[type="button"] {
 
 @media screen and (max-width: 1025px) {
     .contact_button {
-        margin-right: 0px;
+        margin-right: 60px;
     }
 }
 
 @media screen and (max-width: 850px) {
     .contact_button {
-        margin-right: 0px;
+        margin-right: 40px;
     }
 }
 
@@ -589,7 +616,6 @@ form {
 }
 
 form h3 {
-    width: 282px;
     height: 83px;
     margin-top: 0;
     font-size: 64px;
@@ -639,20 +665,28 @@ form textarea {
 }
 
 @media screen and (max-width: 767px) {
-    form label {
+    .modal header {
+        height: 80px;
+    }
+
+    form label, form input {
         font-size: 24px;
     }
 
     form h3 {
         font-size: 40px;
         text-align: left;
-        line-height: 90px;
+        height: unset;
+        line-height: unset;
+        margin: 0;
+        margin-bottom: 10px;
     }
 
     .modal header h2 {
         font-size: 40px;
         text-align: left;
         line-height: 40px;
+        margin: 0px;
     }
 
     .modal header img {
@@ -713,7 +747,8 @@ form textarea {
 
 .lightbox-left {
     position: relative;
-    top: 50%;
+    top: 300px;
+    margin-left: -20px;
     left: -10px;
     cursor: pointer;
     transition: all 400ms;
@@ -721,8 +756,8 @@ form textarea {
 
 .lightbox-right {
     position: relative;
-    top: 50%;
-    right: -1050px;
+    top: 300px;
+    right: -1065px;
     cursor: pointer;
     transition: all 400ms;
 }
@@ -763,9 +798,13 @@ form textarea {
 
     .lightbox-right {
         position: relative;
-        top: 50%;
-        right: -1350px;
+        top: 450px;
+        right: -1365px;
         cursor: pointer;
+    }
+
+    .lightbox-left {
+        top: 500px;
     }
 
     .lightbox-close {
@@ -785,9 +824,8 @@ form textarea {
     }
 
     .lightbox-right {
-        right: -850px;
+        right: -865px;
     }
-
     .lightbox-close {
         right: -920px;
     }
@@ -800,9 +838,8 @@ form textarea {
     .lightbox-img {
         width: 600px !important;
     }
-
     .lightbox-right {
-        right: -650px;
+        right: -665px;
     }
 
     .lightbox-close {
@@ -819,7 +856,7 @@ form textarea {
     }
 
     .lightbox-right {
-        right: -450px;
+        right: -465px;
     }
 
     .lightbox-close {
