@@ -264,11 +264,13 @@ header img:hover {
 
 .media-sort img {
     position: relative;
-    left: -25px;
+    left: 135px;
     width: 16px;
     height: 10px;
     top: 29px;
     transform: rotate(180deg);
+    position: relative;
+    z-index: 2;
 }
 
 .sort-icon {
@@ -293,6 +295,12 @@ button[type="button"] {
     margin-right: 30px;
 }
 
+.media-abso {
+    position: absolute;
+    margin-left: 100px;
+
+}
+
 @media screen and (max-width: 1025px) {
     .media-sort {
         margin: 20px  50px;
@@ -304,6 +312,10 @@ button[type="button"] {
         margin-left: -30px;
         min-width: 75px;
     }
+
+    .media-sort img {
+        left: 155px;
+    }
 }
 
 .media-sort__div, .media-sort div {
@@ -312,6 +324,11 @@ button[type="button"] {
     background-color: #901C1C;
     border-radius: 5px;
     
+}
+
+.media-sort__div {
+    position: relative;
+    z-index: 1;
 }
 
 .media-sort__hidden {
